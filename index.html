@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likhayn- Jennilyn's Creation</title>
+    <link rel="icon" type="image/png" href="images/L-Logo icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 18th Century Historical Intro Page -->
+    <div id="intro-page" class="intro-page">
+        <div class="historical-letter">
+            <!-- Closed Letter State -->
+            <div class="letter-closed" id="letter-closed">
+                <div class="letter-envelope">
+                    <div class="envelope-front">
+                        <div class="envelope-side-left"></div>
+                        <div class="envelope-side-right"></div>
+                        <div class="envelope-pattern"></div>
+                        <div class="envelope-address">
+                            <p class="to-label">To:</p>
+                            <p class="address-text">Dear Visitor</p>
+                        </div>
+                        <div class="wax-seal-large">
+                            <div class="seal-circle-large">
+                                <img src="images/L-Badge.png" alt="Likhan Badge" class="badge-img">
+                            </div>
+                            <p class="seal-hint">Click to Open</p>
+                        </div>
+                    </div>
+                    <div class="envelope-back"></div>
+                </div>
+            </div>
+            
+            <!-- Open Letter State -->
+            <div class="letter-opened" id="letter-opened">
+                <div class="letter-paper">
+                    <div class="letter-paper-overlay"></div>
+                    <div class="letter-header">
+                        <div class="wax-seal-stamp">
+                            <div class="seal-circle-small">
+                                <img src="images/L-Badge.png" alt="Likhan Badge" class="badge-img-small">
+                            </div>
+                        </div>
+                        <p class="letter-date">Anno Domini 2024</p>
+                    </div>
+                    
+                    <div class="letter-content">
+                        <div class="drop-cap-container">
+                            <span class="drop-cap">D</span>
+                            <p class="letter-text">
+                                <span class="drop-cap-word">ear</span> Visitor,
+                            </p>
+                        </div>
+                        <p class="letter-body">
+                            I present to you a collection of my finest works—a testament to the fusion of artistry and innovation. Within these digital pages lies a journey through design, development, and creative expression.
+                        </p>
+                        <p class="letter-body">
+                            May this portfolio serve as an invitation to explore the realms where logic meets beauty, where code becomes canvas, and where ideas transform into reality.
+                        </p>
+                        <p class="letter-signature">
+                            With utmost regard,<br>
+                            <span class="signature-name">Jennilyn Pataueg</span>
+                        </p>
+                    </div>
+                    
+                    <div class="letter-footer">
+                        <button class="open-portfolio-btn">
+                            <span>Enter Portfolio</span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/L-Horizontal Logo.png" alt="Likhan Logo" class="logo-img">
+            </div>
+            <button class="burger-menu" id="burgerMenu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav" id="navMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About Me</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact Me</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <!-- div1: Hey -->
+            <div class="hero-hey reveal">
+                <h1 class="hero-script">Hey</h1>
+            </div>
+            
+            <!-- div2: Image -->
+            <div class="hero-image reveal">
+                <img src="images/1st photo.png" alt="Jennilyn" class="hero-photo">
+            </div>
+            
+            <!-- div3: There, -->
+            <div class="hero-there reveal">
+                <h1 class="hero-script">There,</h1>
+            </div>
+            
+            <!-- div4: I AM JENNILYN -->
+            <div class="hero-left reveal">
+                <h2 class="hero-subtitle">I AM</h2>
+                <h2 class="hero-name">JENNILYN</h2>
+            </div>
+            
+            <!-- div5: Roles -->
+            <div class="hero-right reveal">
+                <div class="hero-roles">
+                    <p data-text="A web designer,">A web designer,</p>
+                    <p data-text="A front-end developer,">A front-end developer,</p>
+                    <p data-text="A Graphic Artist.">A Graphic Artist.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">ABOUT ME</h2>
+            <div class="about-content">
+                <div class="about-image reveal-left">
+                    <img src="images/Jennilyn Professional Photo.png" alt="Jennilyn Professional Photo">
+                </div>
+                <div class="about-text reveal-right">
+                    <p class="about-intro">
+                        Hello I'm Jennilyn Pataueg, a multi-disciplinary creator driven by the fusion of logic and beauty. As a Front-end Developer and Web Designer, I specialize in building user interfaces that are not just highly functional and responsive, but also aesthetically captivating. My foundation in Graphic Arts allows me to bring a keen eye for detail, color, and composition to every line of code, ensuring the final user experience is both seamless and memorable.
+                    </p>
+                    </div>
+            </div>
+            
+            <!-- Video Section -->
+            <div class="about-video reveal">
+                <div class="video-container">
+                    <iframe 
+                        class="about-video-player" 
+                        src="https://www.youtube.com/embed/rIBcIrbqihc" 
+                        title="About Me Video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+                    <div class="about-boxes">
+                        <button class="about-box reveal expandable-box" data-box="journey">
+                            <div class="box-header">
+                                <h3 class="box-title">MY JOURNEY</h3>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="box-content">
+                                <p class="box-text">My professional journey began in college, where I discovered my passion for web development and UI/UX design. Since then, I've been continuously learning and growing in the field.</p>
+                            </div>
+                        </button>
+                        <button class="about-box reveal expandable-box" data-box="expertise">
+                            <div class="box-header">
+                                <h3 class="box-title">MY EXPERTISE</h3>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="box-content">
+                                <p class="box-text"><strong>Clear Communication:</strong> Explains complex technical ideas in simple, understandable terms.<br><br>
+                                <strong>Innovative Thinker:</strong> Continuously generates fresh ideas to improve design and functionality.<br><br>
+                                <strong>Continuous Learner:</strong> Always staying updated with the latest trends and technologies.<br><br>
+                                <strong>Team-Oriented:</strong> Collaborates effectively with cross-functional teams.</p>
+                            </div>
+                        </button>
+                        <button class="about-box reveal expandable-box" data-box="interests">
+                            <div class="box-header">
+                                <h3 class="box-title">MY INTERESTS</h3>
+                                <span class="expand-icon">+</span>
+                            </div>
+                            <div class="box-content">
+                                <p class="box-text">I find creativity in simple pleasures, whether it's reading a good book, singing my favorite songs, or exploring new digital experiences. These interests fuel my passion for design and development.</p>
+                            </div>
+                        </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container reveal">
+            <h2 class="cta-text">READY TO SEE MY WORKS IN ACTION?</h2>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="projects-title reveal">PROJECTS</h2>
+            <p class="projects-subtitle">Scroll through a curated selection of work that showcases my approach</p>
+            <p class="projects-click-hint">Click on any project image to view details</p>
+            
+            <!-- Unified Carousel -->
+            <div class="unified-carousel-wrapper reveal">
+                <div class="project-carousel">
+                    <button class="carousel-btn prev" onclick="moveUnifiedCarousel(-1)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="carousel-container" id="unified-carousel">
+                        <div class="carousel-slide">
+                            <!-- Flyers -->
+                            <div class="project-item" data-category="flyers">
+                                <div class="project-category-label">FLYERS</div>
+                                <img src="images/flyers.png" alt="Flyers">
+            </div>
+
+            <!-- Websites -->
+                            <div class="project-item" data-category="websites">
+                                <div class="project-category-label">WEBSITES</div>
+                                <img src="images/websites.png" alt="Websites">
+                            </div>
+                            
+                            <!-- Logos -->
+                            <div class="project-item logo-item" data-category="logos">
+                                <div class="project-category-label">LOGOS</div>
+                                <img src="images/logo.png" alt="Logos">
+            </div>
+
+            <!-- Posters -->
+                            <div class="project-item" data-category="posters">
+                                <div class="project-category-label">POSTERS</div>
+                                <img src="images/Brand Identity Poster.png" alt="Brand Identity Poster">
+                            </div>
+                            <div class="project-item" data-category="posters">
+                                <div class="project-category-label">POSTERS</div>
+                                <img src="images/poster.png" alt="Poster">
+                            </div>
+                            
+                            <!-- Others -->
+                            <div class="project-item" data-category="others">
+                                <div class="project-category-label">MOBILE APP</div>
+                                <img src="images/storeads.png" alt="StoREADS Mobile App">
+                            </div>
+                            <div class="project-item" data-category="others">
+                                <div class="project-category-label">OTHERS</div>
+                                <img src="images/brew.png" alt="Brew">
+                            </div>
+                            <div class="project-item" data-category="others">
+                                <div class="project-category-label">SKETCH</div>
+                                <img src="images/Sketch Watermelon.png" alt="Sketch Watermelon">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="moveUnifiedCarousel(1)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel-indicator">
+                    <span id="current-project">1</span> / <span id="total-projects">7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="project-modal-overlay"></div>
+        <div class="project-modal-container">
+            <button class="project-modal-close" onclick="closeProjectModal()">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="project-modal-content">
+                <div class="project-modal-header">
+                    <h3 class="project-modal-category" id="modalCategory"></h3>
+                    <h4 class="project-modal-name" id="modalProjectName" style="display: none;"></h4>
+                    <div class="project-modal-counter">
+                        <span id="currentImageIndex">1</span> / <span id="totalImages">1</span>
+                    </div>
+                </div>
+                <div class="project-modal-image-wrapper">
+                    <button class="project-modal-nav-btn prev" onclick="navigateModalImage(-1)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="project-modal-image">
+                        <img id="modalImage" src="" alt="">
+                    </div>
+                    <button class="project-modal-nav-btn next" onclick="navigateModalImage(1)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="project-modal-links-list" id="projectLinksList" style="display: none;">
+                    <!-- Links will be dynamically added here -->
+                </div>
+                <div class="project-modal-actions">
+                    <a id="visitSiteBtn" href="#" target="_blank" rel="noopener noreferrer" class="project-visit-site-btn" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span id="visitSiteBtnText">Visit Site</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title skills-title reveal">SKILLS</h2>
+            <p class="skills-subtitle">A comprehensive toolkit for bringing creative visions to life</p>
+            
+            <!-- Skills Categories with Icons - Triangular Layout -->
+            <div class="skills-categories-grid reveal">
+                <!-- Front End - Lower Left -->
+                <div class="skill-category-box">
+                    <h3 class="skill-category-title">Front End</h3>
+                    <div class="skill-icon-grid-category">
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/html.png" alt="HTML" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/css.webp" alt="CSS" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/js.png" alt="JavaScript" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Editing - Middle Right -->
+                <div class="skill-category-box">
+                    <h3 class="skill-category-title">Editing</h3>
+                    <div class="skill-icon-grid-category">
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/canva-logo.png" alt="Canva" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/am-logo.png" alt="Alight Motion" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/Figma-Logo-PNG-File.png" alt="Figma" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/icon-circle.png" alt="PicsArt" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/png-capcut-logo.png" alt="CapCut" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back End - Lower Right -->
+                <div class="skill-category-box">
+                    <h3 class="skill-category-title">Back End</h3>
+                    <div class="skill-icon-grid-category">
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/sql.png" alt="MySQL" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                        <div class="skill-icon-item">
+                            <div class="skill-icon-wrapper">
+                                <img src="PHOTOS/LOGO/php.svg" alt="PHP" class="skill-icon-img skill-logo-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title certifications-title reveal">CERTIFICATIONS</h2>
+            <p class="certifications-subtitle">Professional achievements and completed courses</p>
+            
+            <div class="certifications-grid reveal">
+                <div class="certificate-item">
+                    <div class="certificate-frame-outer"></div>
+                    <div class="certificate-image-wrapper">
+                        <img src="images/certificate-cisco.png" alt="Cisco Introduction to Packet Tracer Exam Certificate" class="certificate-image">
+                    </div>
+                    <div class="certificate-info">
+                        <h3 class="certificate-title">Introduction to Packet Tracer Exam</h3>
+                        <p class="certificate-issuer">Cisco Networking Academy</p>
+                        <p class="certificate-date">May 30, 2024</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-item">
+                    <div class="certificate-frame-outer"></div>
+                    <div class="certificate-image-wrapper">
+                        <img src="images/hardware-cert.png" alt="Cisco Computer Hardware Basics Certificate" class="certificate-image">
+                    </div>
+                    <div class="certificate-info">
+                        <h3 class="certificate-title">Computer Hardware Basics</h3>
+                        <p class="certificate-issuer">Cisco Networking Academy</p>
+                        <p class="certificate-date">November 3, 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Me Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title contact-title reveal">CONTACT ME</h2>
+            <p class="contact-subtitle">Let's bring your ideas to life together</p>
+            
+            <div class="contact-content">
+                <div class="contact-main-grid">
+                    <!-- Contact Info Side -->
+                    <div class="contact-info-side reveal">
+                        <h3 class="contact-info-title">Get In Touch</h3>
+                        <p class="contact-info-description">Feel free to reach out through any of these channels. I'd love to hear from you!</p>
+                        
+                        <div class="contact-info-list">
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info-details">
+                                    <span class="contact-info-label">Email</span>
+                                    <a href="mailto:jennilyn.pataueg18@gmail.com" class="contact-info-value">jennilyn.pataueg18@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info-details">
+                                    <span class="contact-info-label">Phone</span>
+                                    <a href="tel:09494799363" class="contact-info-value">0949 479 9363</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info-details">
+                                    <span class="contact-info-label">Location</span>
+                                    <span class="contact-info-value">Calamba, Laguna</span>
+                        </div>
+                    </div>
+                        </div>
+                        
+                        <div class="contact-social-icons">
+                            <a href="https://www.linkedin.com/in/jennilyn-pataueg?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-social-icon" title="LinkedIn">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://t.me/estelamayariml" target="_blank" rel="noopener noreferrer" class="contact-social-icon" title="Telegram">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.193l-1.85 8.724c-.137.584-.486.727-.985.452l-2.727-2.01-1.314 1.264c-.149.148-.275.273-.563.273l.198-2.803 5.056-4.566c.221-.195-.048-.304-.342-.107l-6.246 3.93-2.694-.842c-.586-.183-.6-.586.122-.888l10.515-4.053c.489-.18.916.112.757.855z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/share/1UyvosGr6E/" target="_blank" rel="noopener noreferrer" class="contact-social-icon" title="Facebook">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="mailto:jennilyn.pataueg18@gmail.com" class="contact-social-icon" title="Email">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                        <div class="contact-logo-tagline">
+                            <img src="images/L-Horizontal Logo.png" alt="Likhayn Logo" class="contact-logo">
+                            <p class="contact-tagline"><span class="tagline-gold">Where</span> Ideas <span class="tagline-gold">Come</span> to Life</p>
+                    </div>
+                </div>
+                
+                    <!-- Form Side (Highlighted) -->
+                <div class="contact-form-container reveal">
+                        <div class="scroll-wrapper">
+                            <div class="scroll-roll-top"></div>
+                            <div class="scroll-content">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                            </div>
+                            <div class="scroll-roll-bottom"></div>
+                        </div>
+                        
+                        <!-- Envelope Animation Overlay -->
+                        <div class="envelope-animation-overlay" id="envelopeAnimation">
+                            <div class="envelope-animation-container">
+                                <div class="animation-letter">
+                                    <div class="letter-content-animation">
+                                        <p>Message Sent!</p>
+                                    </div>
+                                </div>
+                                <div class="animation-envelope">
+                                    <div class="envelope-flap"></div>
+                                    <div class="envelope-body"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Jennilyn Pataueg. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
