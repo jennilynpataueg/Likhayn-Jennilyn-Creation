@@ -1,7 +1,11 @@
 // Unified Carousel functionality
-let currentProjectIndex = 0;
 let totalProjects = 0;
-let projectItems = [];
+let carouselAnimationId = null;
+let carouselLoopWidth = 0;
+let carouselOffset = 0;
+let carouselPaused = false;
+let carouselInteractionsBound = false;
+let carouselResizeBound = false;
 
 function getUnifiedCarouselElements() {
     const container = document.getElementById('unified-carousel');
@@ -12,145 +16,123 @@ function getUnifiedCarouselElements() {
 
 function initializeUnifiedCarousel() {
     const { container, slide } = getUnifiedCarouselElements();
-    if (!container || !slide) return;
+    if (!container || !slide || slide.dataset.infiniteInitialized === 'true') return;
     
-    projectItems = Array.from(slide.querySelectorAll('.project-item'));
+    slide.dataset.infiniteInitialized = 'true';
+    
+    const projectItems = Array.from(slide.querySelectorAll('.project-item'));
     totalProjects = projectItems.length;
     
-    // Update total projects indicator
     const totalProjectsEl = document.getElementById('total-projects');
     if (totalProjectsEl) {
         totalProjectsEl.textContent = totalProjects;
     }
     
-    // Set initial position to middle item
-    currentProjectIndex = Math.floor(totalProjects / 2);
-    updateCarouselPosition();
-    updateCarouselButtons();
-}
-
-function updateCarouselPosition() {
-    const { container, slide } = getUnifiedCarouselElements();
-    if (!container || !slide || projectItems.length === 0) return;
+    const fragment = document.createDocumentFragment();
+    projectItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.classList.add('project-item-clone');
+        fragment.appendChild(clone);
+    });
+    slide.appendChild(fragment);
     
-    // Remove active class from all items
-    projectItems.forEach(item => item.classList.remove('active'));
+    bindProjectItemClicks(slide);
+    addCarouselInteractionHandlers(slide);
     
-    // Add active class to current item
-    if (projectItems[currentProjectIndex]) {
-        projectItems[currentProjectIndex].classList.add('active');
+    if (!carouselResizeBound) {
+        window.addEventListener('resize', () => {
+            updateCarouselLoopWidth();
+        });
+        carouselResizeBound = true;
     }
     
-    // Use double requestAnimationFrame for smoother transitions
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            const containerWidth = window.innerWidth || container.offsetWidth;
-            const activeItem = projectItems[currentProjectIndex];
-            if (!activeItem) return;
-            
-            // Responsive sizing based on screen width
-            let gap, nonActiveWidth, activeWidth;
-            if (containerWidth <= 768) {
-                // Mobile: full width items
-                gap = 15;
-                nonActiveWidth = containerWidth - 40; // Account for padding
-                activeWidth = containerWidth - 40;
-            } else if (containerWidth <= 1024) {
-                // Tablet
-                gap = 20;
-                nonActiveWidth = 280;
-                activeWidth = 500;
-            } else {
-                // Desktop
-                gap = 30;
-                nonActiveWidth = 300;
-                activeWidth = 600;
+    carouselOffset = 0;
+    carouselPaused = false;
+    slide.style.transform = 'translateX(0)';
+    updateCarouselLoopWidth();
+    startCarouselAutoScroll();
+}
+
+function bindProjectItemClicks(root = document) {
+    const items = root.querySelectorAll('.project-item');
+    items.forEach(item => {
+        item.addEventListener('click', function() {
+            pauseCarouselAutoScroll();
+            openProjectModal(this);
+        });
+    });
+}
+
+function moveUnifiedCarousel() {
+    return;
+}
+
+function startCarouselAutoScroll() {
+    const { slide } = getUnifiedCarouselElements();
+    if (!slide) return;
+    
+    if (carouselAnimationId) {
+        cancelAnimationFrame(carouselAnimationId);
+        carouselAnimationId = null;
+    }
+    
+    if (carouselLoopWidth === 0) {
+        updateCarouselLoopWidth();
+    }
+    
+    const step = () => {
+        if (!carouselPaused && carouselLoopWidth > 0) {
+            carouselOffset += getCarouselSpeed();
+            if (carouselOffset >= carouselLoopWidth) {
+                carouselOffset -= carouselLoopWidth;
             }
-            
-            // Get actual computed widths
-            const actualActiveWidth = activeItem.offsetWidth || activeWidth;
-            const actualNonActiveWidth = nonActiveWidth;
-            
-            // Calculate offset to center the current item
-            let offset = 0;
-            for (let i = 0; i < currentProjectIndex; i++) {
-                offset += actualNonActiveWidth + gap;
-            }
-            
-            // For mobile, center the item
-            if (containerWidth <= 768) {
-                const slidePadding = 20; // Mobile padding
-                offset = (currentProjectIndex * (actualNonActiveWidth + gap)) + slidePadding;
-                const finalOffset = offset - ((containerWidth - actualActiveWidth) / 2);
-                slide.style.transform = `translate3d(-${Math.max(0, finalOffset)}px, 0, 0)`;
-            } else {
-                // Desktop/Tablet: center the active item
-                const slidePadding = (containerWidth / 2) - 300;
-                offset += slidePadding;
-                const activeItemCenter = offset + (actualActiveWidth / 2);
-                const viewportCenter = containerWidth / 2;
-                const finalOffset = activeItemCenter - viewportCenter;
-                slide.style.transform = `translate3d(-${Math.max(0, finalOffset)}px, 0, 0)`;
-            }
+            slide.style.transform = `translateX(-${carouselOffset}px)`;
+        }
+        carouselAnimationId = requestAnimationFrame(step);
+    };
+    
+    step();
+}
+
+function getCarouselSpeed() {
+    return window.innerWidth <= 768 ? 0.4 : 0.8;
+}
+
+function updateCarouselLoopWidth() {
+    const { slide } = getUnifiedCarouselElements();
+    if (!slide) return;
+    const totalWidth = slide.scrollWidth;
+    carouselLoopWidth = totalWidth > 0 ? totalWidth / 2 : 0;
+}
+
+function addCarouselInteractionHandlers(slide) {
+    if (carouselInteractionsBound) return;
+    
+    const pauseEvents = ['mouseenter', 'focusin', 'touchstart', 'mousedown'];
+    const resumeEvents = ['mouseleave', 'focusout', 'touchend', 'mouseup'];
+    
+    pauseEvents.forEach(evt => {
+        slide.addEventListener(evt, () => {
+            carouselPaused = true;
         });
     });
     
-    // Update current project indicator
-    const currentProjectEl = document.getElementById('current-project');
-    if (currentProjectEl) {
-        currentProjectEl.textContent = currentProjectIndex + 1;
-    }
+    resumeEvents.forEach(evt => {
+        slide.addEventListener(evt, () => {
+            carouselPaused = false;
+        });
+    });
+    
+    carouselInteractionsBound = true;
 }
 
-function updateCarouselButtons() {
-    const { container } = getUnifiedCarouselElements();
-    if (!container) return;
-    
-    const controls = container.parentElement;
-    const prevBtn = controls.querySelector('.prev');
-    const nextBtn = controls.querySelector('.next');
-    
-    if (!prevBtn || !nextBtn) return;
-    
-    // Infinite loop - buttons are never disabled
-    prevBtn.disabled = false;
-    nextBtn.disabled = false;
-    prevBtn.classList.remove('disabled');
-    nextBtn.classList.remove('disabled');
+function pauseCarouselAutoScroll() {
+    carouselPaused = true;
 }
 
-function moveUnifiedCarousel(direction) {
-    if (totalProjects === 0) return;
-    
-    // Infinite loop logic
-    let newIndex = currentProjectIndex + direction;
-    
-    if (newIndex < 0) {
-        // Loop to the end
-        newIndex = totalProjects - 1;
-    } else if (newIndex >= totalProjects) {
-        // Loop to the beginning
-        newIndex = 0;
-    }
-    
-    currentProjectIndex = newIndex;
-    updateCarouselPosition();
-    updateCarouselButtons();
+function resumeCarouselAutoScroll() {
+    carouselPaused = false;
 }
-
-function handleUnifiedCarouselResize() {
-    updateCarouselPosition();
-    updateCarouselButtons();
-}
-
-function debounce(fn, delay = 200) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn.apply(this, args), delay);
-    };
-}
-
 
 // Intersection observer for reveal animations - works on scroll up and down
 const revealObserverOptions = {
@@ -422,6 +404,7 @@ let currentModalImages = [];
 let currentModalImageIndex = 0;
 
 function openProjectModal(projectItem) {
+    pauseCarouselAutoScroll();
     const modal = document.getElementById('projectModal');
     const modalImage = document.getElementById('modalImage');
     const modalCategory = document.getElementById('modalCategory');
@@ -647,6 +630,7 @@ function closeProjectModal() {
         document.body.style.overflow = '';
         currentModalImages = [];
         currentModalImageIndex = 0;
+        resumeCarouselAutoScroll();
     }
 }
 
@@ -689,14 +673,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add click handlers to project items
-    const projectItems = document.querySelectorAll('.project-item');
-    projectItems.forEach(item => {
-        item.addEventListener('click', function() {
-            openProjectModal(this);
-        });
-    });
-    
     const skillsSection = document.querySelector('.skills');
     if (skillsSection) {
         const skillIcons = skillsSection.querySelectorAll('.skill-icon-item');
@@ -711,9 +687,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initExpandableBoxes();
     initHistoricalSkillIcons();
     initializeUnifiedCarousel();
-    
-    // Handle resize for unified carousel
-    window.addEventListener('resize', debounce(handleUnifiedCarouselResize, 200));
 });
 
 // Add active state to navigation on scroll
