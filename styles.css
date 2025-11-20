@@ -2198,6 +2198,17 @@ body.dark-mode .theme-toggle-icon--moon {
     position: relative;
 }
 
+.carousel-container.carousel-touch-mode {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.carousel-container.carousel-touch-mode::-webkit-scrollbar {
+    display: none;
+}
+
 #unified-carousel {
     max-width: 100%;
     width: 100%;
@@ -2638,6 +2649,142 @@ body.dark-mode .theme-toggle-icon--moon {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+}
+
+/* Dark mode adjustments for project modal */
+body.dark-mode .project-modal-container {
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 2px,
+            rgba(5, 7, 16, 0.5) 2px,
+            rgba(5, 7, 16, 0.5) 4px
+        ),
+        linear-gradient(135deg, rgba(10, 13, 24, 0.95), rgba(5, 7, 16, 0.95));
+    border-color: rgba(240, 212, 106, 0.5);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .project-modal-content {
+    color: var(--white);
+    background: transparent;
+}
+
+body.dark-mode .project-modal-category {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(240, 212, 106, 0.4);
+}
+
+body.dark-mode .project-modal-name,
+body.dark-mode .project-modal-counter {
+    color: rgba(240, 212, 106, 0.9);
+}
+
+body.dark-mode .project-modal-links-list {
+    background: rgba(18, 24, 43, 0.85);
+    border-color: rgba(240, 212, 106, 0.2);
+}
+
+body.dark-mode .project-modal-links-list::before {
+    background: rgba(5, 7, 16, 0.9);
+    border-color: rgba(240, 212, 106, 0.3);
+    color: var(--gold);
+}
+
+body.dark-mode .project-link-item {
+    background: rgba(5, 7, 16, 0.7);
+    border-color: rgba(240, 212, 106, 0.3);
+}
+
+body.dark-mode .project-link-name,
+body.dark-mode .project-link-url {
+    color: var(--white);
+}
+
+body.dark-mode .project-modal-counter,
+body.dark-mode .project-modal-links-list,
+body.dark-mode .project-link-item {
+    color: var(--white);
+}
+
+body.dark-mode .project-link-url::after {
+    background: var(--gold);
+}
+
+body.dark-mode .project-modal-image img {
+    border-color: rgba(240, 212, 106, 0.3);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Ensure hero text readability */
+body.dark-mode .hero-subtitle,
+body.dark-mode .hero-name,
+body.dark-mode .hero-roles p::before,
+body.dark-mode .hero-roles p.animate::after {
+    color: var(--white);
+}
+
+body.dark-mode .projects-title,
+body.dark-mode .projects-subtitle,
+body.dark-mode .projects-click-hint,
+body.dark-mode .category-title,
+body.dark-mode .project-category-label {
+    color: var(--white);
+}
+
+body.dark-mode .projects-click-hint::before {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@media (max-width: 768px) {
+    .hero-subtitle {
+        font-size: 28px;
+    }
+
+    .hero-name {
+        font-size: 42px;
+    }
+
+    .hero-roles p {
+        font-size: 16px;
+    }
+
+    .projects-title {
+        font-size: 42px;
+    }
+
+    .projects-subtitle,
+    .projects-click-hint {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    .hero-name {
+        font-size: 32px;
+    }
+
+    .hero-roles p {
+        font-size: 12px;
+    }
+
+    .projects-title {
+        font-size: 34px;
+    }
+
+    .projects-subtitle,
+    .projects-click-hint {
+        font-size: 13px;
+    }
 }
 
 .project-link-item::before {
@@ -5038,7 +5185,7 @@ body.dark-mode .theme-toggle-icon--moon {
         padding: 6px 10px;
         font-size: 14px;
     }
-    
+
     .logo {
         height: 70px;
     }
@@ -5184,16 +5331,17 @@ body.dark-mode .theme-toggle-icon--moon {
     
     .carousel-container {
         padding: 30px 10px 20px;
+        overflow: hidden;
+        width: 100%;
     }
 
     .carousel-slide {
-        padding-left: 20px;
-        padding-right: 20px;
-        gap: 15px;
-        width: max-content !important;
-        min-width: 100%;
+        padding: 0 calc(50vw - 280px);
+        gap: 25px;
+        width: auto;
+        min-width: auto;
         justify-content: flex-start;
-        display: flex !important;
+        display: flex;
     }
 
     #unified-carousel {
@@ -5202,59 +5350,39 @@ body.dark-mode .theme-toggle-icon--moon {
         width: 100%;
     }
     
-    .carousel-container {
-        overflow: hidden;
-        width: 100%;
-    }
-
     #unified-carousel .project-item {
-        min-width: calc(100% - 40px) !important;
-        max-width: calc(100% - 40px) !important;
-        width: calc(100% - 40px) !important;
-        opacity: 0.5;
-        transform: scale(0.9);
-        flex-shrink: 0 !important;
-        flex-grow: 0 !important;
-        display: block !important;
-        visibility: visible !important;
-        position: relative !important;
+        min-width: 300px;
+        max-width: 300px;
+        width: 300px;
+        opacity: 0.85;
+        transform: scale(0.85);
+        flex: 0 0 auto;
+        display: flex;
+        visibility: visible;
+        position: relative;
     }
 
     #unified-carousel .project-item.active {
-        min-width: calc(100% - 40px) !important;
-        max-width: calc(100% - 40px) !important;
-        width: calc(100% - 40px) !important;
-        opacity: 1 !important;
-        transform: scale(1) !important;
-        z-index: 10;
-        filter: brightness(1) !important;
-        flex-shrink: 0 !important;
-        flex-grow: 0 !important;
-        display: block !important;
-        visibility: visible !important;
-    }
-    
-    #unified-carousel .project-item.active::before {
-        opacity: 1 !important;
-        border-width: 3px;
+        opacity: 1;
+        transform: scale(1);
     }
     
     #unified-carousel .project-item:not(.active) {
-        opacity: 0.5 !important;
-        transform: scale(0.9) !important;
+        opacity: 0.85;
+        transform: scale(0.85);
     }
 
     #unified-carousel .logo-item {
-        min-width: calc(100% - 20px);
-        max-width: calc(100% - 20px);
-        width: calc(100% - 20px);
+        min-width: 300px;
+        max-width: 300px;
+        width: 300px;
         height: auto;
     }
 
     .project-item {
-        flex: 0 0 100%;
-        min-width: calc(100% - 20px);
-        max-width: none;
+        flex: 0 0 auto;
+        min-width: 300px;
+        max-width: 400px;
     }
     
     .project-category-label {
@@ -5506,18 +5634,6 @@ body.dark-mode .theme-toggle-icon--moon {
     }
 }
 
-@media (max-width: 520px) {
-    .theme-toggle {
-        padding: 6px;
-        min-width: 40px;
-        justify-content: center;
-    }
-
-    .theme-toggle-label {
-        display: none;
-    }
-}
-
 @media (max-width: 480px) {
     .header {
         position: fixed !important;
@@ -5578,14 +5694,14 @@ body.dark-mode .theme-toggle-icon--moon {
     }
     
     .carousel-slide {
-        padding: 0 10px;
-        gap: 15px;
+        padding: 0 calc(50vw - 220px);
+        gap: 20px;
     }
     
     #unified-carousel .project-item {
-        min-width: calc(100% - 40px);
-        max-width: calc(100% - 40px);
-        width: calc(100% - 40px);
+        min-width: 240px;
+        max-width: 240px;
+        width: 240px;
     }
 
     /* Modal Responsive */
@@ -5762,6 +5878,18 @@ body.dark-mode .theme-toggle-icon--moon {
     
     .project-modal-image img {
         max-height: 40vh;
+    }
+}
+
+@media (max-width: 520px) {
+    .theme-toggle {
+        padding: 6px;
+        min-width: 40px;
+        justify-content: center;
+    }
+
+    .theme-toggle-label {
+        display: none;
     }
 }
 

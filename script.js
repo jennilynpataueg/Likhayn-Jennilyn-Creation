@@ -8,6 +8,12 @@ let carouselInteractionsBound = false;
 let carouselResizeBound = false;
 const THEME_STORAGE_KEY = 'preferredTheme';
 let prefersDarkMediaQuery = null;
+const MOBILE_BREAKPOINT = 768;
+let useScrollContainer = false;
+
+function isMobileViewport() {
+    return window.innerWidth <= MOBILE_BREAKPOINT;
+}
 
 function applyThemePreference(theme) {
     const body = document.body;
@@ -85,7 +91,7 @@ function initializeUnifiedCarousel() {
     if (!container || !slide || slide.dataset.infiniteInitialized === 'true') return;
     
     slide.dataset.infiniteInitialized = 'true';
-    
+
     const projectItems = Array.from(slide.querySelectorAll('.project-item'));
     totalProjects = projectItems.length;
     
@@ -93,7 +99,10 @@ function initializeUnifiedCarousel() {
     if (totalProjectsEl) {
         totalProjectsEl.textContent = totalProjects;
     }
-    
+
+    useScrollContainer = false;
+    container.classList.remove('carousel-touch-mode');
+
     const fragment = document.createDocumentFragment();
     projectItems.forEach(item => {
         const clone = item.cloneNode(true);
@@ -106,17 +115,37 @@ function initializeUnifiedCarousel() {
     addCarouselInteractionHandlers(slide);
     
     if (!carouselResizeBound) {
-        window.addEventListener('resize', () => {
-            updateCarouselLoopWidth();
-        });
+        window.addEventListener('resize', handleCarouselResize);
         carouselResizeBound = true;
     }
     
     carouselOffset = 0;
     carouselPaused = false;
+    container.scrollLeft = 0;
     slide.style.transform = 'translateX(0)';
     updateCarouselLoopWidth();
     startCarouselAutoScroll();
+}
+
+function handleCarouselResize() {
+    const { container, slide } = getUnifiedCarouselElements();
+    if (!container || !slide) return;
+    
+    const shouldUseScroll = false;
+    if (useScrollContainer !== shouldUseScroll) {
+        useScrollContainer = shouldUseScroll;
+        container.classList.remove('carousel-touch-mode');
+        carouselOffset = 0;
+        if (useScrollContainer) {
+            slide.style.transform = 'none';
+            container.scrollLeft = 0;
+        } else {
+            slide.style.transform = 'translateX(0)';
+        }
+        startCarouselAutoScroll();
+    }
+    
+    updateCarouselLoopWidth();
 }
 
 function bindProjectItemClicks(root = document) {
@@ -134,8 +163,8 @@ function moveUnifiedCarousel() {
 }
 
 function startCarouselAutoScroll() {
-    const { slide } = getUnifiedCarouselElements();
-    if (!slide) return;
+    const { container, slide } = getUnifiedCarouselElements();
+    if (!slide || !container) return;
     
     if (carouselAnimationId) {
         cancelAnimationFrame(carouselAnimationId);
@@ -148,11 +177,20 @@ function startCarouselAutoScroll() {
     
     const step = () => {
         if (!carouselPaused && carouselLoopWidth > 0) {
-            carouselOffset += getCarouselSpeed();
-            if (carouselOffset >= carouselLoopWidth) {
-                carouselOffset -= carouselLoopWidth;
+            if (useScrollContainer) {
+                const nextPosition = container.scrollLeft + getCarouselSpeed(true);
+                if (nextPosition >= carouselLoopWidth) {
+                    container.scrollLeft = nextPosition - carouselLoopWidth;
+                } else {
+                    container.scrollLeft = nextPosition;
+                }
+            } else {
+                carouselOffset += getCarouselSpeed();
+                if (carouselOffset >= carouselLoopWidth) {
+                    carouselOffset -= carouselLoopWidth;
+                }
+                slide.style.transform = `translateX(-${carouselOffset}px)`;
             }
-            slide.style.transform = `translateX(-${carouselOffset}px)`;
         }
         carouselAnimationId = requestAnimationFrame(step);
     };
@@ -160,8 +198,8 @@ function startCarouselAutoScroll() {
     step();
 }
 
-function getCarouselSpeed() {
-    return window.innerWidth <= 768 ? 0.4 : 0.8;
+function getCarouselSpeed(isMobile = window.innerWidth <= MOBILE_BREAKPOINT) {
+    return isMobile ? 0.4 : 0.8;
 }
 
 function updateCarouselLoopWidth() {
