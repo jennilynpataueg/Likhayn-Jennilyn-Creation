@@ -6,6 +6,72 @@ let carouselOffset = 0;
 let carouselPaused = false;
 let carouselInteractionsBound = false;
 let carouselResizeBound = false;
+const THEME_STORAGE_KEY = 'preferredTheme';
+let prefersDarkMediaQuery = null;
+
+function applyThemePreference(theme) {
+    const body = document.body;
+    if (!body) return;
+    
+    const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+    body.classList.remove('dark-mode', 'light-mode');
+    body.classList.add(`${normalizedTheme}-mode`);
+    
+    const toggleBtn = document.getElementById('themeToggle');
+    if (toggleBtn) {
+        toggleBtn.setAttribute('aria-pressed', normalizedTheme === 'dark' ? 'true' : 'false');
+        const label = toggleBtn.querySelector('.theme-toggle-label');
+        if (label) {
+            label.textContent = normalizedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        }
+    }
+    
+    const colorScheme = normalizedTheme === 'dark' ? 'dark' : 'light';
+    document.documentElement.style.setProperty('color-scheme', colorScheme);
+}
+
+function getStoredThemePreference() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+        return null;
+    }
+}
+
+function setStoredThemePreference(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+        // Ignore write errors (e.g., privacy mode)
+    }
+}
+
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggle');
+    const storedTheme = getStoredThemePreference();
+    prefersDarkMediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    const systemPrefersDark = prefersDarkMediaQuery ? prefersDarkMediaQuery.matches : false;
+    const initialTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    applyThemePreference(initialTheme);
+    
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            const isCurrentlyDark = document.body.classList.contains('dark-mode');
+            const nextTheme = isCurrentlyDark ? 'light' : 'dark';
+            applyThemePreference(nextTheme);
+            setStoredThemePreference(nextTheme);
+        });
+    }
+    
+    if (prefersDarkMediaQuery && !storedTheme) {
+        const handleSchemeChange = (event) => {
+            if (getStoredThemePreference()) return;
+            applyThemePreference(event.matches ? 'dark' : 'light');
+        };
+        prefersDarkMediaQuery.addEventListener('change', handleSchemeChange);
+    }
+}
 
 function getUnifiedCarouselElements() {
     const container = document.getElementById('unified-carousel');
@@ -636,6 +702,7 @@ function closeProjectModal() {
 
 // Observe skills section & initialize carousels when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    initThemeToggle();
     initIntroPage();
     
     // Project Modal setup
