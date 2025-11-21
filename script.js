@@ -199,7 +199,7 @@ function startCarouselAutoScroll() {
 }
 
 function getCarouselSpeed(isMobile = window.innerWidth <= MOBILE_BREAKPOINT) {
-    return isMobile ? 0.4 : 0.8;
+    return isMobile ? 0.8 : 1.2;
 }
 
 function updateCarouselLoopWidth() {

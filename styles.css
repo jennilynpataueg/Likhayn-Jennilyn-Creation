@@ -242,6 +242,100 @@ body.dark-mode .contact-form-container {
     border-color: rgba(240, 212, 106, 0.2);
 }
 
+/* Dark mode font colors for Skills */
+body.dark-mode .skill-category-box {
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(240, 212, 106, 0.05) 2px,
+            rgba(240, 212, 106, 0.05) 4px
+        ),
+        linear-gradient(135deg, rgba(18, 24, 43, 0.95), rgba(11, 17, 34, 0.98));
+    border-color: rgba(240, 212, 106, 0.5);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(240, 212, 106, 0.1),
+        inset 0 -1px 0 rgba(240, 212, 106, 0.2);
+}
+
+body.dark-mode .skill-category-title {
+    color: var(--white) !important;
+}
+
+body.dark-mode .skills-subtitle {
+    color: var(--white) !important;
+}
+
+body.dark-mode .skills-categories-grid p {
+    color: var(--white) !important;
+}
+
+/* Dark mode font colors for Certificates */
+body.dark-mode .certificate-info {
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(240, 212, 106, 0.05) 2px,
+            rgba(240, 212, 106, 0.05) 4px
+        ),
+        linear-gradient(135deg, rgba(18, 24, 43, 0.95), rgba(11, 17, 34, 0.98));
+    border-color: rgba(240, 212, 106, 0.3);
+}
+
+body.dark-mode .certificate-title {
+    color: var(--white) !important;
+}
+
+body.dark-mode .certificate-issuer {
+    color: var(--gold) !important;
+}
+
+body.dark-mode .certificate-date {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Dark mode font colors for Contact form */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    color: var(--white);
+    background: rgba(18, 24, 43, 0.6);
+    border-color: rgba(240, 212, 106, 0.4);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    color: var(--white);
+    background: rgba(18, 24, 43, 0.8);
+    border-color: var(--gold);
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .submit-btn {
+    background: rgba(24, 0, 173, 0.9);
+    color: var(--white) !important;
+    border-color: var(--gold);
+    box-shadow: 
+        0 4px 16px rgba(24, 0, 173, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .submit-btn:hover {
+    background: rgba(75, 59, 199, 0.95);
+    box-shadow: 
+        0 6px 20px rgba(24, 0, 173, 0.7),
+        0 0 15px rgba(240, 212, 106, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
 /* 18th Century Historical Intro Page */
 .intro-page {
     position: fixed;
@@ -2335,7 +2429,7 @@ body.dark-mode .theme-toggle-icon--moon {
     font-weight: 600;
     letter-spacing: 0.5px;
     border: 2px solid var(--gold);
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease;
     white-space: nowrap;
     pointer-events: none;
